@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 
 export default function PwaTestPage() {
   const [isPWA, setIsPWA] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
   const [installable, setInstallable] = useState(false);
 
   useEffect(() => {
     // Check if running as PWA
     const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
-                  (window.navigator.standalone === true) ||
+                  ((window.navigator as unknown as { standalone?: boolean }).standalone === true) ||
                   document.referrer.includes('android-app://');
     
     setIsPWA(isPWA);
@@ -31,8 +31,14 @@ export default function PwaTestPage() {
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+      // Type assertion for PWA install prompt event
+      const prompt = deferredPrompt as unknown as {
+        prompt: () => void;
+        userChoice: Promise<{ outcome: string }>;
+      };
+      
+      prompt.prompt();
+      const { outcome } = await prompt.userChoice;
       if (outcome === 'accepted') {
         console.log('User accepted the install prompt');
       } else {

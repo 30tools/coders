@@ -2,11 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { code, language } = await request.json();
-
-    if (!code || !language) {
+    const body: unknown = await request.json();
+    
+    // Type guard to validate request body
+    if (!body || typeof body !== 'object') {
       return NextResponse.json(
-        { error: 'Code and language are required' },
+        { error: 'Invalid request body' },
+        { status: 400 }
+      );
+    }
+    
+    const { code, language } = body as { code?: unknown; language?: unknown };
+
+    if (!code || !language || typeof code !== 'string' || typeof language !== 'string') {
+      return NextResponse.json(
+        { error: 'Code and language are required and must be strings' },
         { status: 400 }
       );
     }
@@ -59,7 +69,7 @@ Be precise and accurate. Consider all loops, recursive calls, data structures, a
       // The API returns a JSON string, so we need to parse it
       const analysisResult = JSON.parse(responseText);
       return NextResponse.json(analysisResult);
-    } catch (parseError) {
+    } catch {
       // If JSON parsing fails, try to extract JSON from the response
       const jsonMatch = responseText.match(/\{[\s\S]*\}/);
       if (jsonMatch) {

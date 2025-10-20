@@ -51,12 +51,21 @@ export default function ComplexityAnalyzer() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || `API request failed: ${response.status}`);
+        const errorData: unknown = await response.json();
+        const errorMessage = typeof errorData === 'object' && errorData !== null && 'error' in errorData 
+          ? (errorData as { error: string }).error 
+          : `API request failed: ${response.status}`;
+        throw new Error(errorMessage);
       }
 
-      const analysisResult = await response.json();
-      setResult(analysisResult);
+      const analysisResult: unknown = await response.json();
+      
+      // Type guard to validate the response structure
+      if (typeof analysisResult === 'object' && analysisResult !== null) {
+        setResult(analysisResult as ComplexityResult);
+      } else {
+        throw new Error('Invalid response format from API');
+      }
     } catch (err) {
       console.error('Analysis error:', err);
       setError(err instanceof Error ? err.message : 'Failed to analyze complexity');

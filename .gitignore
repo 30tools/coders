@@ -44,3 +44,5 @@ next-env.d.ts
 !.dev.vars.example
 !.env.example
 .env
+public/workbox-*
+public/sw.js

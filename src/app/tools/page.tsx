@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, Filter, Star, Zap, Code2, Grid3X3, List, ArrowRight, Tag } from 'lucide-react';
+import { Search, Star, Zap, Code2, Grid3X3, List, ArrowRight } from 'lucide-react';
 import { toolsData } from '@/lib/tools-data';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,7 +21,7 @@ export default function ToolsPage() {
   const [sortBy, setSortBy] = useState<SortBy>('name');
 
   const filteredTools = useMemo(() => {
-    let filtered = tools.filter(tool => {
+    const filtered = tools.filter(tool => {
       // Search filter
       const searchMatch = searchQuery === '' || 
         tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -72,7 +72,7 @@ export default function ToolsPage() {
   };
 
   const getIconComponent = (iconName: string) => {
-    const iconMap: { [key: string]: any } = {
+    const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
       'braces': Code2,
       'globe': Code2,
       'file-text': Code2,
@@ -102,8 +102,7 @@ export default function ToolsPage() {
       'clock': Code2,
       'trending-up': Code2,
     };
-    const IconComponent = iconMap[iconName] || Code2;
-    return IconComponent;
+    return iconMap[iconName] || Code2;
   };
 
   return (
