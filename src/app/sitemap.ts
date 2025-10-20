@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/tools`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/tools/json-formatter`,
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/tools/url-encoder`,
+      url: `${baseUrl}/tools/complexity-analyzer`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
