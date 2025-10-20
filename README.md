@@ -1,126 +1,36 @@
-# 💻 Coders — by [30Tools](https://30tools.com)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-> 🚀 The ultimate toolbox for programmers.  
-> Free, fast, and beautifully designed tools to help you code smarter and ship faster.
+## Getting Started
 
-🌐 **Live:** [https://coders.30tools.com](https://coders.30tools.com)  
-📦 **Repo:** [github.com/30tools/coders](https://github.com/30tools/coders)
-
----
-
-## ✨ What is Coders?
-
-**Coders** is a developer-focused collection of essential tools for programmers — everything you need in one clean interface.  
-No ads, no clutter, just pure developer productivity.
-
-> 🧠 Built by coders, for coders — because developers deserve elegant tools too.
-
----
-
-## 🧰 Tools You’ll Find
-
-| Category | Tools |
-|-----------|-------|
-| **Code & Syntax** | Code formatter, minifier, beautifier, regex tester, JSON/YAML converter, diff checker |
-| **APIs & Backends** | API tester, JWT decoder, mock API generator, JSON→TS converter, cURL→Axios converter |
-| **Data & Encoding** | Base64 encoder/decoder, hash generator, URL encoder/decoder, CSV→JSON converter |
-| **Frontend Tools** | CSS→Tailwind converter, color palette extractor, SVG optimizer, favicon generator |
-| **AI & Productivity** | Commit message generator, README generator, code explainer, bug finder |
-
-…and new tools are added regularly 👨‍💻
-
----
-
-## 🧱 Tech Stack
-
-| Layer | Technology |
-|--------|-------------|
-| **Frontend** | Next.js 15 (App Router) |
-| **UI** | Tailwind CSS + shadcn/ui |
-| **Database (if used)** | Drizzle ORM + Turso / SQLite |
-| **Deployment** | Vercel / Cloudflare |
-| **AI Layer** | OpenAI + custom logic |
-
----
-
-## 🤝 Contributing
-
-We ❤️ contributions from the community!  
-You can help by:
-1. Suggesting a new developer tool idea  
-2. Improving the existing ones  
-3. Fixing bugs or adding UI enhancements  
-
-### 🧩 How to Contribute
-1. **Fork** the repository  
-2. Create a new branch:
+First, run the development server:
 
 ```bash
-   git checkout -b feature/your-tool-name
-````
-
-3. Add your tool inside `/tools/` following the existing folder structure
-4. Commit & push your changes
-5. Open a **Pull Request**
-
-> All contributions must comply with our [License](#-license) — you can contribute freely but cannot reuse or resell this codebase.
-
----
-
-## ⚡ Development Setup
-
-```bash
-# Clone this repository
-git clone https://github.com/30tools/coders.git
-
-# Navigate into project
-cd coders
-
-# Install dependencies
-npm install
-
-# Run development server
 npm run dev
-
-# Visit localhost:3000
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🧠 Philosophy
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-> Tools should be fast, free, and beautiful.
-> Coders exists to make developers’ everyday work easier — from debugging to deployment.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 🔒 License
+To learn more about Next.js, take a look at the following resources:
 
-This project is **source-available** under a **Custom Contributor License**.
-You may:
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-* View the source
-* Fork for contributing purposes
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-You may **not**:
+## Deploy on Vercel
 
-* Reuse, redistribute, or host this codebase publicly
-* Use it commercially without written permission
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-📄 See [LICENSE](./LICENSE) for full terms.
-
----
-
-## 🌍 Connect with Us
-
-* 🏠 [30Tools Official Site](https://30tools.com)
-* 🧰 [All Tools Directory](https://www.30tools.com/tools)
-* 🐦 [Twitter / X](https://twitter.com/SH20RAJ)
-* 💬 Support: [sh20raj@gmail.com](mailto:sh20raj@gmail.com)
-
----
-
-### ⭐ Star this repo if you believe in open tools for developers.
-
-> *Coders by [30Tools](https://30tools.com) — empowering developers to code smarter, faster, and better.*
-It helps your project stand out in search and social shares.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
