@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         alt: "Coders - Developer Toolbox",
       },
     ],
-  },
+ },
   twitter: {
     card: "summary_large_image",
     title: "Coders - The Ultimate Developer Toolbox",
@@ -55,6 +55,7 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -90,6 +91,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <meta name="theme-color" content="#3f5efb" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, Filter, Star, Zap, Code2, Grid3X3, List, ArrowRight, Tag } from 'lucide-react';
 import { toolsData } from '@/lib/tools-data';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const { tools, categories } = toolsData;
 
@@ -105,274 +107,278 @@ export default function ToolsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-black dark:text-white mb-4">
-            Developer Tools
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Discover {tools.length} essential coding tools designed to boost your productivity. 
-            Find formatters, analyzers, converters, and more.
-          </p>
-        </div>
-
-        {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
-          {/* Search Bar */}
-          <div className="relative max-w-xl mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search tools..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
-            />
+    <>
+      <Header />
+      <div className="min-h-screen bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-black dark:text-white mb-4">
+              Developer Tools
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Discover {tools.length} essential coding tools designed to boost your productivity. 
+              Find formatters, analyzers, converters, and more.
+            </p>
           </div>
 
-          {/* Filters Row */}
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-4">
-              {/* Category Filter */}
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-black text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
-              >
-                <option value="all">All Categories</option>
-                {categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-
-              {/* Difficulty Filter */}
-              <select
-                value={selectedDifficulty}
-                onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-black text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
-              >
-                <option value="all">All Levels</option>
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-              </select>
-
-              {/* Featured Toggle */}
-              <label className="flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={showFeaturedOnly}
-                  onChange={(e) => setShowFeaturedOnly(e.target.checked)}
-                  className="sr-only"
-                />
-                <div className={`relative w-10 h-6 rounded-full transition-colors duration-200 ${
-                  showFeaturedOnly ? 'bg-black dark:bg-white' : 'bg-gray-300 dark:bg-gray-600'
-                }`}>
-                  <div className={`absolute top-1 left-1 w-4 h-4 bg-white dark:bg-black rounded-full transition-transform duration-200 ${
-                    showFeaturedOnly ? 'translate-x-4' : ''
-                  }`}></div>
-                </div>
-                <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">Featured only</span>
-              </label>
+          {/* Search and Filters */}
+          <div className="mb-8 space-y-4">
+            {/* Search Bar */}
+            <div className="relative max-w-xl mx-auto">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search tools..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
+              />
             </div>
 
-            <div className="flex items-center gap-4">
-              {/* Sort */}
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as SortBy)}
-                className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-black text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
-              >
-                <option value="name">Sort by Name</option>
-                <option value="category">Sort by Category</option>
-                <option value="difficulty">Sort by Difficulty</option>
-                <option value="popular">Sort by Popularity</option>
-              </select>
+            {/* Filters Row */}
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                {/* Category Filter */}
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-black text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
+                >
+                  <option value="all">All Categories</option>
+                  {categories.map(category => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
 
-              {/* View Mode Toggle */}
-              <div className="flex border border-gray-300 dark:border-gray-700 rounded-md">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  className={`p-2 ${
-                    viewMode === 'grid'
-                      ? 'bg-black dark:bg-white text-white dark:text-black'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
-                  }`}
+                {/* Difficulty Filter */}
+                <select
+                  value={selectedDifficulty}
+                  onChange={(e) => setSelectedDifficulty(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-black text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
                 >
-                  <Grid3X3 className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`p-2 ${
-                    viewMode === 'list'
-                      ? 'bg-black dark:bg-white text-white dark:text-black'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
-                  }`}
+                  <option value="all">All Levels</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+
+                {/* Featured Toggle */}
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={showFeaturedOnly}
+                    onChange={(e) => setShowFeaturedOnly(e.target.checked)}
+                    className="sr-only"
+                  />
+                  <div className={`relative w-10 h-6 rounded-full transition-colors duration-200 ${
+                    showFeaturedOnly ? 'bg-black dark:bg-white' : 'bg-gray-300 dark:bg-gray-600'
+                  }`}>
+                    <div className={`absolute top-1 left-1 w-4 h-4 bg-white dark:bg-black rounded-full transition-transform duration-200 ${
+                      showFeaturedOnly ? 'translate-x-4' : ''
+                    }`}></div>
+                  </div>
+                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">Featured only</span>
+                </label>
+              </div>
+
+              <div className="flex items-center gap-4">
+                {/* Sort */}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as SortBy)}
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-black text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
                 >
-                  <List className="h-4 w-4" />
-                </button>
+                  <option value="name">Sort by Name</option>
+                  <option value="category">Sort by Category</option>
+                  <option value="difficulty">Sort by Difficulty</option>
+                  <option value="popular">Sort by Popularity</option>
+                </select>
+
+                {/* View Mode Toggle */}
+                <div className="flex border border-gray-300 dark:border-gray-700 rounded-md">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-2 ${
+                      viewMode === 'grid'
+                        ? 'bg-black dark:bg-white text-white dark:text-black'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
+                    }`}
+                  >
+                    <Grid3X3 className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`p-2 ${
+                      viewMode === 'list'
+                        ? 'bg-black dark:bg-white text-white dark:text-black'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
+                    }`}
+                  >
+                    <List className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-gray-600 dark:text-gray-300">
-            Showing {filteredTools.length} of {tools.length} tools
-            {searchQuery && (
-              <span> for "<span className="font-medium text-black dark:text-white">{searchQuery}</span>"</span>
-            )}
-          </p>
-        </div>
-
-        {/* Tools Grid/List */}
-        {filteredTools.length === 0 ? (
-          <div className="text-center py-12">
-            <Code2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-2">
-              No tools found
-            </h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              Try adjusting your search terms or filters.
+          {/* Results Count */}
+          <div className="mb-6">
+            <p className="text-gray-600 dark:text-gray-300">
+              Showing {filteredTools.length} of {tools.length} tools
+              {searchQuery && (
+                <span> for "<span className="font-medium text-black dark:text-white">{searchQuery}</span>"</span>
+              )}
             </p>
           </div>
-        ) : (
-          <div className={
-            viewMode === 'grid'
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-              : 'space-y-4'
-          }>
-            {filteredTools.map((tool) => {
-              const IconComponent = getIconComponent(tool.icon);
-              const categoryInfo = categories.find(cat => cat.id === tool.category);
 
-              if (viewMode === 'grid') {
-                return (
-                  <Link
-                    key={tool.id}
-                    href={tool.url}
-                    className="group block p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 hover:shadow-sm"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center">
-                        <IconComponent className="h-6 w-6 text-black dark:text-white mr-3" />
-                        <div>
-                          <h3 className="font-semibold text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
-                            {tool.name}
-                          </h3>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        {tool.featured && (
-                          <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
-                        )}
-                        {tool.popular && (
-                          <Zap className="h-4 w-4 text-blue-500" />
-                        )}
-                      </div>
-                    </div>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
-                      {tool.shortDescription}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(tool.difficulty)}`}>
-                          {tool.difficulty}
-                        </span>
-                        <span className="px-2 py-1 rounded text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                          {categoryInfo?.name}
-                        </span>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
-                    </div>
-                  </Link>
-                );
-              } else {
-                return (
-                  <Link
-                    key={tool.id}
-                    href={tool.url}
-                    className="group block p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center flex-1 min-w-0">
-                        <IconComponent className="h-5 w-5 text-black dark:text-white mr-3 flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center space-x-2 mb-1">
+          {/* Tools Grid/List */}
+          {filteredTools.length === 0 ? (
+            <div className="text-center py-12">
+              <Code2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-2">
+                No tools found
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Try adjusting your search terms or filters.
+              </p>
+            </div>
+          ) : (
+            <div className={
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                : 'space-y-4'
+            }>
+              {filteredTools.map((tool) => {
+                const IconComponent = getIconComponent(tool.icon);
+                const categoryInfo = categories.find(cat => cat.id === tool.category);
+
+                if (viewMode === 'grid') {
+                  return (
+                    <Link
+                      key={tool.id}
+                      href={tool.url}
+                      className="group block p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 hover:shadow-sm"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center">
+                          <IconComponent className="h-6 w-6 text-black dark:text-white mr-3" />
+                          <div>
                             <h3 className="font-semibold text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
                               {tool.name}
                             </h3>
-                            {tool.featured && (
-                              <Star className="h-3 w-3 text-yellow-500" fill="currentColor" />
-                            )}
-                            {tool.popular && (
-                              <Zap className="h-3 w-3 text-blue-500" />
-                            )}
                           </div>
-                          <p className="text-gray-600 dark:text-gray-300 text-sm truncate">
-                            {tool.shortDescription}
-                          </p>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          {tool.featured && (
+                            <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
+                          )}
+                          {tool.popular && (
+                            <Zap className="h-4 w-4 text-blue-500" />
+                          )}
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2 ml-4">
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(tool.difficulty)}`}>
-                          {tool.difficulty}
-                        </span>
-                        <span className="px-2 py-1 rounded text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hidden sm:inline">
-                          {categoryInfo?.name}
-                        </span>
+                      
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
+                        {tool.shortDescription}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(tool.difficulty)}`}>
+                            {tool.difficulty}
+                          </span>
+                          <span className="px-2 py-1 rounded text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                            {categoryInfo?.name}
+                          </span>
+                        </div>
                         <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
                       </div>
-                    </div>
-                  </Link>
-                );
-              }
-            })}
-          </div>
-        )}
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <Link
+                      key={tool.id}
+                      href={tool.url}
+                      className="group block p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center flex-1 min-w-0">
+                          <IconComponent className="h-5 w-5 text-black dark:text-white mr-3 flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <h3 className="font-semibold text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                                {tool.name}
+                              </h3>
+                              {tool.featured && (
+                                <Star className="h-3 w-3 text-yellow-500" fill="currentColor" />
+                              )}
+                              {tool.popular && (
+                                <Zap className="h-3 w-3 text-blue-500" />
+                              )}
+                            </div>
+                            <p className="text-gray-600 dark:text-gray-300 text-sm truncate">
+                              {tool.shortDescription}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2 ml-4">
+                          <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(tool.difficulty)}`}>
+                            {tool.difficulty}
+                          </span>
+                          <span className="px-2 py-1 rounded text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hidden sm:inline">
+                            {categoryInfo?.name}
+                          </span>
+                          <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                }
+              })}
+            </div>
+          )}
 
-        {/* Categories Overview */}
-        <div className="mt-16 border-t border-gray-200 dark:border-gray-800 pt-12">
-          <h2 className="text-2xl font-bold text-black dark:text-white mb-8 text-center">
-            Browse by Category
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => {
-              const categoryTools = tools.filter(tool => tool.category === category.id);
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => {
-                    setSelectedCategory(category.id);
-                    setSearchQuery('');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 text-left group"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-semibold text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
-                      {category.name}
-                    </h3>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {categoryTools.length} tools
-                    </span>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    {category.description}
-                  </p>
-                </button>
-              );
-            })}
+          {/* Categories Overview */}
+          <div className="mt-16 border-t border-gray-200 dark:border-gray-800 pt-12">
+            <h2 className="text-2xl font-bold text-black dark:text-white mb-8 text-center">
+              Browse by Category
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map((category) => {
+                const categoryTools = tools.filter(tool => tool.category === category.id);
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => {
+                      setSelectedCategory(category.id);
+                      setSearchQuery('');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 text-left group"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-semibold text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                        {category.name}
+                      </h3>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {categoryTools.length} tools
+                      </span>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      {category.description}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
