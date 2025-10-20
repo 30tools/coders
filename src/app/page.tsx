@@ -1,111 +1,107 @@
 import Link from "next/link";
-import { ArrowRight, Code, Zap, Shield, Users, Star, Github, Twitter } from "lucide-react";
+import { ArrowRight, Code2, Zap, Shield, Users, Star, Github, MessageCircle, ExternalLink } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Header */}
-      <header className="border-b border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm sticky top-0 z-50">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-            <span className="text-xl font-bold text-slate-900 dark:text-white">Coders</span>
-            <span className="text-sm text-slate-500 dark:text-slate-400 hidden sm:inline">by 30Tools</span>
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-sm sticky top-0 z-50">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Code2 className="h-6 w-6 text-black dark:text-white" />
+            <span className="text-xl font-semibold text-black dark:text-white">Coders</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400 hidden sm:inline">by 30Tools</span>
           </div>
           
           <div className="flex items-center space-x-4">
             <Link 
+              href="https://gist.github.com/SH20RAJ/9668ba4c5eb54da09b50b687b49a392d" 
+              className="text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
+              aria-label="Join Discussion"
+            >
+              <MessageCircle className="h-5 w-5" />
+            </Link>
+            <Link 
               href="https://github.com/30tools/coders" 
-              className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              className="text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
               aria-label="GitHub Repository"
             >
               <Github className="h-5 w-5" />
-            </Link>
-            <Link 
-              href="https://twitter.com/SH20RAJ" 
-              className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              aria-label="Twitter"
-            >
-              <Twitter className="h-5 w-5" />
             </Link>
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white tracking-tight">
-              The Ultimate
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                {" "}Developer Toolbox
-              </span>
-            </h1>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div className="text-center space-y-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black dark:text-white tracking-tight leading-tight">
+            The Ultimate
+            <br />
+            <span className="text-gray-600 dark:text-gray-400">Developer Toolbox</span>
+          </h1>
+          
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            30+ essential coding tools in one clean interface. No ads, no clutter, just pure developer productivity.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-12">
+            <Link
+              href="/tools"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-black dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 rounded-lg transition-colors duration-200"
+            >
+              Explore Tools
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
             
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              30+ essential coding tools in one clean, fast interface. No ads, no clutter, just pure developer productivity. 
-              Built by developers, for developers.
-            </p>
+            <Link
+              href="https://github.com/30tools/coders"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-black dark:text-white border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-lg transition-colors duration-200"
+            >
+              <Github className="mr-2 h-4 w-4" />
+              View Source
+            </Link>
+          </div>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href="/tools"
-                className="group inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
-              >
-                Explore Tools
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              
-              <Link
-                href="https://github.com/30tools/coders"
-                className="inline-flex items-center px-8 py-4 text-lg font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
-              >
-                <Github className="mr-2 h-5 w-5" />
-                View on GitHub
-              </Link>
+          <div className="flex items-center justify-center space-x-8 text-sm text-gray-500 dark:text-gray-400 mt-8">
+            <div className="flex items-center">
+              <Star className="h-4 w-4 mr-1" />
+              Free Forever
             </div>
-
-            <div className="mt-8 flex items-center justify-center space-x-6 text-sm text-slate-500 dark:text-slate-400">
-              <div className="flex items-center">
-                <Star className="h-4 w-4 mr-1 text-yellow-500" />
-                Free Forever
-              </div>
-              <div className="flex items-center">
-                <Zap className="h-4 w-4 mr-1 text-green-500" />
-                Lightning Fast
-              </div>
-              <div className="flex items-center">
-                <Shield className="h-4 w-4 mr-1 text-blue-500" />
-                Privacy First
-              </div>
+            <div className="flex items-center">
+              <Zap className="h-4 w-4 mr-1" />
+              Lightning Fast
+            </div>
+            <div className="flex items-center">
+              <Shield className="h-4 w-4 mr-1" />
+              Privacy First
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white/50 dark:bg-slate-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="border-t border-gray-200 dark:border-gray-800 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl font-bold text-black dark:text-white mb-4">
               Everything You Need to Code Smarter
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              From code formatting to API testing, we've got all the essential tools developers use daily.
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              From code formatting to API testing, we've got the essential tools developers use daily.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="group p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-slate-200/60 dark:border-slate-700/60 transition-all duration-200 hover:-translate-y-1">
-                <div className="mb-4">
-                  <feature.icon className="h-8 w-8 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
+              <div key={index} className="text-center space-y-4">
+                <div className="mx-auto w-12 h-12 flex items-center justify-center">
+                  <feature.icon className="h-6 w-6 text-black dark:text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-black dark:text-white">
                   {feature.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -115,13 +111,13 @@ export default function Home() {
       </section>
 
       {/* Tools Preview Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="border-t border-gray-200 dark:border-gray-800 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-3xl font-bold text-black dark:text-white mb-4">
               Popular Developer Tools
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Most-used tools by our developer community
             </p>
           </div>
@@ -131,15 +127,15 @@ export default function Home() {
               <Link
                 key={index}
                 href={`/tools/${tool.slug}`}
-                className="group p-6 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+                className="block p-6 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 rounded-lg transition-colors duration-200"
               >
                 <div className="flex items-center mb-3">
-                  <tool.icon className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-3" />
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <tool.icon className="h-5 w-5 text-black dark:text-white mr-3" />
+                  <h3 className="text-lg font-semibold text-black dark:text-white">
                     {tool.name}
                   </h3>
                 </div>
-                <p className="text-slate-600 dark:text-slate-300 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
                   {tool.description}
                 </p>
               </Link>
@@ -149,7 +145,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link
               href="/tools"
-              className="inline-flex items-center px-6 py-3 text-base font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 border-2 border-blue-600 dark:border-blue-400 hover:border-blue-700 dark:hover:border-blue-300 rounded-xl transition-colors"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-black dark:text-white border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-lg transition-colors duration-200"
             >
               View All 30+ Tools
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -158,64 +154,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700">
+      {/* Community Section */}
+      <section className="border-t border-gray-200 dark:border-gray-800 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Code Smarter?
+          <h2 className="text-3xl font-bold text-black dark:text-white mb-6">
+            Join the Community
           </h2>
-          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of developers who've already discovered the power of having all their essential tools in one place.
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            Connect with thousands of developers who use Coders daily. Share feedback, request features, and contribute to the project.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/tools"
-              className="inline-flex items-center px-8 py-4 text-lg font-medium text-blue-600 bg-white hover:bg-slate-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+              href="https://gist.github.com/SH20RAJ/9668ba4c5eb54da09b50b687b49a392d"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-black dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 rounded-lg transition-colors duration-200"
             >
-              Get Started - It's Free
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Join Discussion
+              <ExternalLink className="ml-2 h-3 w-3" />
             </Link>
             
             <Link
               href="https://github.com/30tools/coders"
-              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white border-2 border-white/30 hover:border-white/50 hover:bg-white/10 rounded-xl transition-all duration-200"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-black dark:text-white border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-lg transition-colors duration-200"
             >
-              <Github className="mr-2 h-5 w-5" />
-              Star on GitHub
+              <Github className="mr-2 h-4 w-4" />
+              Contribute on GitHub
+              <ExternalLink className="ml-2 h-3 w-3" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200/60 dark:border-slate-800/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <footer className="border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Code className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-              <span className="text-lg font-bold text-slate-900 dark:text-white">Coders</span>
-              <span className="text-sm text-slate-500 dark:text-slate-400">by 30Tools</span>
+            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+              <Code2 className="h-5 w-5 text-black dark:text-white" />
+              <span className="text-lg font-semibold text-black dark:text-white">Coders</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400">by 30Tools</span>
             </div>
             
-            <div className="flex items-center space-x-6">
-              <Link href="https://30tools.com" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm transition-colors">
+            <div className="flex items-center space-x-8">
+              <Link href="https://30tools.com" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white text-sm transition-colors duration-200">
                 30Tools
               </Link>
-              <Link href="/tools" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm transition-colors">
+              <Link href="/tools" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white text-sm transition-colors duration-200">
                 All Tools
               </Link>
-              <Link href="https://github.com/30tools/coders" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm transition-colors">
+              <Link href="https://github.com/30tools/coders" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white text-sm transition-colors duration-200">
                 GitHub
               </Link>
-              <Link href="mailto:sh20raj@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm transition-colors">
+              <Link href="mailto:sh20raj@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white text-sm transition-colors duration-200">
                 Contact
               </Link>
             </div>
           </div>
           
-          <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700 text-center">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+          <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               © 2024 30Tools. Built with ❤️ for the developer community. Open source and free forever.
             </p>
           </div>
@@ -227,7 +225,7 @@ export default function Home() {
 
 const features = [
   {
-    icon: Code,
+    icon: Code2,
     title: "Code & Syntax",
     description: "Formatters, beautifiers, minifiers, and syntax converters for all major languages."
   },
@@ -252,7 +250,7 @@ const popularTools = [
   {
     name: "JSON Formatter",
     description: "Format, validate, and minify JSON with syntax highlighting.",
-    icon: Code,
+    icon: Code2,
     slug: "json-formatter"
   },
   {
@@ -270,7 +268,7 @@ const popularTools = [
   {
     name: "Regex Tester",
     description: "Test regular expressions with real-time matching.",
-    icon: Code,
+    icon: Code2,
     slug: "regex-tester"
   },
   {
