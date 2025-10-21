@@ -32,6 +32,45 @@ export const toolsData = {
       "implemented": true
     },
     {
+      "id": "code-minifier",
+      "name": "Code Minifier",
+      "description": "Advanced minification tool for HTML, CSS, JavaScript and 20+ programming languages with batch processing, side-by-side comparison, and CLI support.",
+      "searchDesc": "code minifier minify html css javascript typescript json xml php python java compress optimize uglify terser cleancss htmlminifier batch cli",
+      "category": "code-syntax",
+      "subcategory": "optimization",
+      "tags": [
+        "minifier",
+        "optimizer",
+        "compress",
+        "uglify",
+        "batch",
+        "cli",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "json",
+        "xml"
+      ],
+      "featured": true,
+      "popular": true,
+      "difficulty": "intermediate",
+      "inputTypes": [
+        "text",
+        "file",
+        "batch"
+      ],
+      "outputTypes": [
+        "text",
+        "file",
+        "zip"
+      ],
+      "url": "/tools/code-minifier",
+      "icon": "zap",
+      "shortDescription": "Minify and optimize code in 20+ languages with advanced features",
+      "implemented": true
+    },
+    {
       "id": "api-tester",
       "name": "API Tester",
       "description": "Test REST APIs with custom headers, authentication, and request body formatting.",
