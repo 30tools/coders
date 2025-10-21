@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { ArrowRight, Code2, Zap, Shield, Users, Star, Github, MessageCircle, User, TrendingUp, ExternalLink } from "lucide-react";
-import { useUser } from '@stackframe/stack';
+import { useSafeUser } from '@/lib/hooks/useSafeUser';
 
 export default function HomeClient() {
-  const user = useUser();
+  const user = useSafeUser();
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">

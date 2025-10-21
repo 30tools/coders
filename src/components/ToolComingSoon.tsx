@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ArrowLeft, Construction, Code2, Zap, User, Mail } from 'lucide-react';
 import Link from 'next/link';
-import { useUser } from '@stackframe/stack';
+import { useSafeUser } from '@/lib/hooks/useSafeUser';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -14,7 +14,7 @@ interface ToolComingSoonProps {
 }
 
 export default function ToolComingSoon({ toolName, description, features }: ToolComingSoonProps) {
-  const user = useUser();
+  const user = useSafeUser();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Code2, Github, ExternalLink, User, LogOut, Menu, X } from 'lucide-react';
-import { useUser } from '@stackframe/stack';
+import { useSafeUser } from '@/lib/hooks/useSafeUser';
 import { useState } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 export default function Header() {
-  const user = useUser();
+  const user = useSafeUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSignOut = async () => {

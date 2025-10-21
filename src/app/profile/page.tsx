@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { useUser } from '@stackframe/stack';
+import { useSafeUser } from '@/lib/hooks/useSafeUser';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -45,7 +45,7 @@ interface AnalysisHistory {
 }
 
 export default function ProfilePage() {
-  const user = useUser();
+  const user = useSafeUser();
   const [savedAnalyses, setSavedAnalyses] = useState<AnalysisHistory[]>([]);
   const [recentHistory, setRecentHistory] = useState<AnalysisHistory[]>([]);
   const [activeTab, setActiveTab] = useState<'overview' | 'saved' | 'history' | 'settings'>('overview');

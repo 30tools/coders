@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { Play, Clock, HardDrive, AlertCircle, Lightbulb, Code2, TrendingUp, Info, User, History, Save } from 'lucide-react';
-import { useUser } from '@stackframe/stack';
+import { useSafeUser } from '@/lib/hooks/useSafeUser';
 
 interface ComplexityResult {
   timeComplexity: {
@@ -32,7 +32,7 @@ interface AnalysisHistory {
 }
 
 export default function ComplexityAnalyzer() {
-  const user = useUser();
+  const user = useSafeUser();
   const [code, setCode] = useState('');
   const [language, setLanguage] = useState('javascript');
   const [isAnalyzing, setIsAnalyzing] = useState(false);

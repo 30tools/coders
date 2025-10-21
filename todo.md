@@ -1,0 +1,12 @@
+- create a minifier tool that can minify HTML, CSS, and JavaScript files, codes and also support batch processing of multiple files at once.
+- implement a feature to preview the minified output before saving it to a file.
+- add an option to customize the level of minification (e.g., aggressive, moderate, light).
+- integrate a command-line interface (CLI) for users who prefer using terminal commands.
+- develop a web-based interface for users to upload files and receive minified versions.
+- include error handling to manage invalid input files or unsupported formats.
+- write unit tests to ensure the reliability and correctness of the minification process.
+- document the tool's usage, features, and installation instructions in a README file.
+- explore the possibility of adding support for additional file types, such as JSON or XML.
+- optimize the performance of the minification process for large files. best ui ux , and supports almost all languages.
+- implement a feature to compare the original and minified files side by side.
+use jsdelivr for cdns of the libraries used in the project.
