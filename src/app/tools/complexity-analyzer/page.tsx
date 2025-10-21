@@ -1,6 +1,7 @@
 'use client'
-import { useState } from 'react';
-import { Play, Clock, HardDrive, AlertCircle, Lightbulb, Code2, TrendingUp, Info } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Play, Clock, HardDrive, AlertCircle, Lightbulb, Code2, TrendingUp, Info, User, History, Save } from 'lucide-react';
+import { useUser } from '@stackframe/stack';
 
 interface ComplexityResult {
   timeComplexity: {
@@ -21,12 +22,97 @@ interface ComplexityResult {
   };
 }
 
+interface AnalysisHistory {
+  id: string;
+  language: string;
+  code: string;
+  result: ComplexityResult;
+  timestamp: Date;
+  title?: string;
+}
+
 export default function ComplexityAnalyzer() {
+  const user = useUser();
   const [code, setCode] = useState('');
   const [language, setLanguage] = useState('javascript');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<ComplexityResult | null>(null);
   const [error, setError] = useState('');
+  const [history, setHistory] = useState<AnalysisHistory[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [savedAnalyses, setSavedAnalyses] = useState<AnalysisHistory[]>([]);
+
+  // Load user's history from localStorage when component mounts
+  useEffect(() => {
+    if (user) {
+      const savedHistory = localStorage.getItem(`complexity-history-${user.id}`);
+      const saved = localStorage.getItem(`complexity-saved-${user.id}`);
+      
+      if (savedHistory) {
+        try {
+          const parsed = JSON.parse(savedHistory);
+          setHistory(parsed.map((item: unknown) => ({
+            ...item as AnalysisHistory,
+            timestamp: new Date((item as AnalysisHistory).timestamp)
+          })));
+        } catch (error) {
+          console.error('Failed to load history:', error);
+        }
+      }
+      
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          setSavedAnalyses(parsed.map((item: unknown) => ({
+            ...item as AnalysisHistory,
+            timestamp: new Date((item as AnalysisHistory).timestamp)
+          })));
+        } catch (error) {
+          console.error('Failed to load saved analyses:', error);
+        }
+      }
+    }
+  }, [user]);
+
+  const saveToHistory = (analysisResult: ComplexityResult) => {
+    if (!user) return;
+    
+    const newAnalysis: AnalysisHistory = {
+      id: Date.now().toString(),
+      language,
+      code,
+      result: analysisResult,
+      timestamp: new Date()
+    };
+    
+    const updatedHistory = [newAnalysis, ...history].slice(0, 10); // Keep last 10
+    setHistory(updatedHistory);
+    localStorage.setItem(`complexity-history-${user.id}`, JSON.stringify(updatedHistory));
+  };
+
+  const saveAnalysis = (title?: string) => {
+    if (!user || !result) return;
+    
+    const newSaved: AnalysisHistory = {
+      id: Date.now().toString(),
+      language,
+      code,
+      result,
+      timestamp: new Date(),
+      title: title || `${language} Analysis`
+    };
+    
+    const updatedSaved = [newSaved, ...savedAnalyses];
+    setSavedAnalyses(updatedSaved);
+    localStorage.setItem(`complexity-saved-${user.id}`, JSON.stringify(updatedSaved));
+  };
+
+  const loadFromHistory = (analysis: AnalysisHistory) => {
+    setCode(analysis.code);
+    setLanguage(analysis.language);
+    setResult(analysis.result);
+    setError('');
+  };
 
   const analyzeComplexity = async () => {
     if (!code.trim()) {
@@ -62,7 +148,13 @@ export default function ComplexityAnalyzer() {
       
       // Type guard to validate the response structure
       if (typeof analysisResult === 'object' && analysisResult !== null) {
-        setResult(analysisResult as ComplexityResult);
+        const result = analysisResult as ComplexityResult;
+        setResult(result);
+        
+        // Save to history if user is logged in
+        if (user) {
+          saveToHistory(result);
+        }
       } else {
         throw new Error('Invalid response format from API');
       }
@@ -136,7 +228,78 @@ export default function ComplexityAnalyzer() {
             Analyze the computational complexity of your algorithms with AI-powered insights. 
             Get detailed time and space complexity analysis with optimization suggestions.
           </p>
+          
+          {/* User Status */}
+          {user && (
+            <div className="mt-4 inline-flex items-center space-x-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <User className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <span className="text-sm text-blue-700 dark:text-blue-300">
+                Signed in as {user.displayName || user.primaryEmail} - History & Save features enabled
+              </span>
+            </div>
+          )}
         </div>
+
+        {/* User Features Bar */}
+        {user && (
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+            <button
+              onClick={() => setShowHistory(!showHistory)}
+              className="flex items-center space-x-2 px-4 py-2 text-sm border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+            >
+              <History className="h-4 w-4" />
+              <span>History ({history.length})</span>
+            </button>
+            {result && (
+              <button
+                onClick={() => saveAnalysis()}
+                className="flex items-center space-x-2 px-4 py-2 text-sm bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 border border-green-300 dark:border-green-700 rounded-md hover:bg-green-200 dark:hover:bg-green-800 transition-colors"
+              >
+                <Save className="h-4 w-4" />
+                <span>Save Analysis</span>
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* History Panel */}
+        {user && showHistory && (
+          <div className="mb-8 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-black dark:text-white mb-4">Recent Analysis History</h3>
+            {history.length > 0 ? (
+              <div className="space-y-3 max-h-60 overflow-y-auto">
+                {history.map((analysis) => (
+                  <div 
+                    key={analysis.id}
+                    className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    onClick={() => loadFromHistory(analysis)}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center space-x-2 mb-1">
+                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                          {analysis.language}
+                        </span>
+                        <span className="text-xs text-gray-400 dark:text-gray-500">
+                          {analysis.timestamp.toLocaleDateString()}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 truncate">
+                        {analysis.code.substring(0, 80)}...
+                      </p>
+                    </div>
+                    <div className="ml-4 text-right">
+                      <span className={`text-xs font-medium ${getComplexityColor(analysis.result.timeComplexity.worst)}`}>
+                        {analysis.result.timeComplexity.worst}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500 dark:text-gray-400 text-sm">No analysis history yet. Start analyzing code to see your history here.</p>
+            )}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Section */}
@@ -322,7 +485,7 @@ export default function ComplexityAnalyzer() {
                   Ready to Analyze
                 </h3>
                 <p className="text-gray-500 dark:text-gray-400 text-sm">
-                  Enter your code and click "Analyze Complexity" to get detailed insights about your algorithm's performance.
+                  Enter your code and click &ldquo;Analyze Complexity&rdquo; to get detailed insights about your algorithm&apos;s performance.
                 </p>
               </div>
             )}

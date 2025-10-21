@@ -1,6 +1,9 @@
 import { toolsData } from '@/lib/tools-data';
 import ToolComingSoon from '@/components/ToolComingSoon';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
+
+// Force dynamic rendering for pages that use Stack Auth
+export const dynamic = 'force-dynamic';
 
 // Generate static params for all tools
 export function generateStaticParams() {
@@ -17,15 +20,14 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
     notFound();
   }
 
-  // If the tool is implemented, we would import its specific component
-  // For now, all tools except complexity-analyzer show coming soon
+  // If the tool is implemented, redirect to its specific page
   if (tool.id === 'complexity-analyzer') {
-    // This would normally import the actual component
-    // For now, redirect to the working complexity analyzer
-    if (typeof window !== 'undefined') {
-      window.location.href = '/tools/complexity-analyzer';
-    }
-    return null;
+    redirect('/tools/complexity-analyzer');
+  }
+  
+  if (tool.implemented) {
+    // For other implemented tools, redirect to their specific page
+    redirect(`/tools/${tool.id}`);
   }
 
   // Get tool features from the full db.json data

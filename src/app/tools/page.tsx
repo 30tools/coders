@@ -228,7 +228,7 @@ export default function ToolsPage() {
             <p className="text-gray-600 dark:text-gray-300">
               Showing {filteredTools.length} of {tools.length} tools
               {searchQuery && (
-                <span> for "<span className="font-medium text-black dark:text-white">{searchQuery}</span>"</span>
+                <span> for &ldquo;<span className="font-medium text-black dark:text-white">{searchQuery}</span>&rdquo;</span>
               )}
             </p>
           </div>

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { StackProvider, StackTheme } from "@stackframe/stack";
-import { stackClientApp } from "../stack/client";
+import { StackTheme } from "@stackframe/stack";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import ErrorBoundary from "@/components/error-boundary";
+import StackProviderWrapper from "@/components/StackProviderWrapper";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -104,9 +106,22 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ><StackProvider app={stackClientApp}><StackTheme>
-        {children}
-      </StackTheme></StackProvider></body>
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ErrorBoundary>
+            <StackProviderWrapper>
+              <StackTheme>
+                {children}
+              </StackTheme>
+            </StackProviderWrapper>
+          </ErrorBoundary>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

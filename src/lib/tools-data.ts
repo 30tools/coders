@@ -29,7 +29,7 @@ export const toolsData = {
       "url": "/tools/json-formatter",
       "icon": "braces",
       "shortDescription": "Format and validate JSON data instantly",
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "api-tester",
@@ -122,7 +122,7 @@ export const toolsData = {
       "url": "/tools/base64-encoder",
       "icon": "file-text",
       "shortDescription": "Encode and decode Base64 data instantly",
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "regex-tester",
@@ -152,7 +152,7 @@ export const toolsData = {
       "url": "/tools/regex-tester",
       "icon": "search",
       "shortDescription": "Test regex patterns with live matching",
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "hash-generator",
@@ -182,7 +182,7 @@ export const toolsData = {
       "url": "/tools/hash-generator",
       "icon": "shield",
       "shortDescription": "Generate cryptographic hashes for security",
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "url-encoder",
@@ -213,7 +213,7 @@ export const toolsData = {
       "url": "/tools/url-encoder",
       "icon": "link",
       "shortDescription": "Safely encode and decode URLs",
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "css-minifier",
