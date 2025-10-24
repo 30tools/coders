@@ -1,6 +1,4 @@
 import { generateMetadata as createSEOMetadata, generateStructuredData } from '@/lib/seo';
-import ServerHeader from '@/components/ServerHeader';
-import Footer from '@/components/Footer';
 import JSONFormatterTool from './JSONFormatterTool';
 import type { Metadata } from 'next';
 
@@ -45,9 +43,7 @@ export default function JSONFormatterPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServerHeader />
       <JSONFormatterTool />
-      <Footer />
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import ServerHeader from '@/components/ServerHeader';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Developer Tools - 31+ Essential Coding Utilities | Coders Toolbox',
@@ -20,5 +22,11 @@ export default function ToolsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <ServerHeader />
+      {children}
+      <Footer />
+    </>
+  );
 }

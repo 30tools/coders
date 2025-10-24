@@ -17,8 +17,6 @@ import {
   Terminal,
   FileCode
 } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 // Import minification utilities
 import { minifyHTML, minifyCSS, minifyJS, minifyJSON, minifyXML } from '@/lib/minifier/core';
@@ -352,7 +350,6 @@ export default function CodeMinifier() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
-      <Header />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
@@ -764,7 +761,6 @@ export default function CodeMinifier() {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 }

@@ -2,8 +2,6 @@
 
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { Copy, Search, RefreshCw, BookOpen, AlertCircle, CheckCircle, Clock, Target } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
@@ -258,10 +256,8 @@ export default function RegexTesterPage() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <div className="min-h-screen bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-white dark:bg-black">
+      <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-black dark:text-white mb-4">
@@ -551,7 +547,5 @@ export default function RegexTesterPage() {
           </div>
         </div>
       </div>
-      <Footer />
-    </>
   );
 }

@@ -1,7 +1,5 @@
 import { generateMetadata as createSEOMetadata, generateStructuredData } from '@/lib/seo';
 import { toolsData } from '@/lib/tools-data';
-import ServerHeader from '@/components/ServerHeader';
-import Footer from '@/components/Footer';
 import ToolsContent from './ToolsContent';
 import type { Metadata } from 'next';
 
@@ -35,9 +33,7 @@ export default function ToolsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServerHeader />
       <ToolsContent />
-      <Footer />
     </div>
   );
 }

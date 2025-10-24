@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Code2, Zap, Shield, Users, Star, Github, MessageCircle, User, TrendingUp, ExternalLink } from "lucide-react";
+import { ArrowRight, Code2, Zap, Shield, Users, Star, Github, MessageCircle, User, ExternalLink } from "lucide-react";
 import { ClientUserMessage } from "./ClientUserMessage";
 
 interface User {
@@ -16,69 +16,179 @@ interface HomeContentProps {
 export default function HomeContent({ user }: HomeContentProps) {
   return (
     <>
-      {/* Hero Section */}
-      <section className="pt-24 pb-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-6">
-            The Ultimate{" "}
-            <span className="bg-gradient-to-r from-gray-600 to-black dark:from-gray-200 dark:to-white bg-clip-text text-transparent">
-              Developer Toolbox
-            </span>
-          </h1>
-          
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            30+ essential coding tools in one clean interface. No ads, no clutter, just pure developer productivity.
-          </p>
+      {/* Creative Terminal-Inspired Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-black dark:to-gray-900">
+        {/* Animated Background Grid */}
+        <div className="absolute inset-0 opacity-20 dark:opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '20px 20px',
+            animation: 'grid-move 20s linear infinite'
+          }}></div>
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-12">
-            <Link
-              href="/tools"
-              className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-black dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
-              aria-label="Explore all developer tools"
-            >
-              Explore Tools
-              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-            </Link>
+        {/* Floating Code Snippets */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-20 left-10 animate-float-slow opacity-30 dark:opacity-20">
+            <div className="bg-black dark:bg-white text-white dark:text-black px-3 py-2 rounded-lg font-mono text-sm">
+              npm install coders
+            </div>
+          </div>
+          <div className="absolute top-40 right-20 animate-float-slower opacity-30 dark:opacity-20">
+            <div className="bg-green-600 text-white px-3 py-2 rounded-lg font-mono text-sm">
+              {"{ \"success\": true }"}
+            </div>
+          </div>
+          <div className="absolute bottom-40 left-20 animate-float opacity-30 dark:opacity-20">
+            <div className="bg-blue-600 text-white px-3 py-2 rounded-lg font-mono text-sm">
+              const tools = 30+
+            </div>
+          </div>
+          <div className="absolute bottom-20 right-10 animate-float-slow opacity-30 dark:opacity-20">
+            <div className="bg-purple-600 text-white px-3 py-2 rounded-lg font-mono text-sm">
+              BASE64_DECODED
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             
-            {user ? (
-              <Link
-                href="/tools/complexity-analyzer"
-                className="inline-flex items-center px-6 py-3 text-base font-medium text-black dark:text-white border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-                aria-label="Open Complexity Analyzer tool"
-              >
-                <TrendingUp className="mr-2 h-4 w-4" aria-hidden="true" />
-                Complexity Analyzer
-              </Link>
-            ) : (
-              <Link
-                href="https://github.com/30tools/coders"
-                className="inline-flex items-center px-6 py-3 text-base font-medium text-black dark:text-white border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View source code on GitHub (opens in new tab)"
-              >
-                <Github className="mr-2 h-4 w-4" aria-hidden="true" />
-                View Source
-              </Link>
-            )}
+            {/* Left Side - Terminal Interface */}
+            <div className="order-2 lg:order-1">
+              <div className="bg-gray-900 dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
+                {/* Terminal Header */}
+                <div className="flex items-center justify-between px-4 py-3 bg-gray-800 dark:bg-gray-700 border-b border-gray-700">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="text-gray-400 text-sm font-mono">coders-toolbox.sh</div>
+                  <div className="w-12"></div>
+                </div>
+
+                {/* Terminal Content */}
+                <div className="p-6 font-mono text-sm space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-green-400">$</span>
+                    <span className="text-white">./coders --list-tools</span>
+                  </div>
+                  
+                  <div className="space-y-1 text-gray-300">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-blue-400">→</span>
+                      <span>JSON Formatter & Validator</span>
+                      <span className="text-green-400 text-xs">✓</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-blue-400">→</span>
+                      <span>Base64 Encoder/Decoder</span>
+                      <span className="text-green-400 text-xs">✓</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-blue-400">→</span>
+                      <span>Hash Generator Suite</span>
+                      <span className="text-green-400 text-xs">✓</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-blue-400">→</span>
+                      <span>Regex Pattern Tester</span>
+                      <span className="text-green-400 text-xs">✓</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-blue-400">→</span>
+                      <span>URL Encoder/Decoder</span>
+                      <span className="text-green-400 text-xs">✓</span>
+                    </div>
+                    <div className="text-yellow-400">... and 25+ more tools</div>
+                  </div>
+
+                  <div className="flex items-center space-x-2 pt-2">
+                    <span className="text-green-400">$</span>
+                    <span className="text-white animate-pulse">|</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Hero Content */}
+            <div className="order-1 lg:order-2 text-center lg:text-left">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 mb-6">
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  🚀 30+ Developer Tools Ready
+                </span>
+              </div>
+
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6 leading-tight">
+                Code Like a
+                <br />
+                <span className="relative">
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent animate-gradient-x">
+                    Pro
+                  </span>
+                  <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 rounded-full animate-gradient-x"></div>
+                </span>
+              </h1>
+
+              <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Your command-line arsenal in the browser. 
+                <br />
+                <span className="font-semibold text-black dark:text-white">
+                  Zero setup. Maximum productivity.
+                </span>
+              </p>
+
+              {/* Interactive Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Link
+                  href="/tools"
+                  className="group relative px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-medium rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-black/20 dark:focus:ring-white/20"
+                  aria-label="Launch developer tools"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center justify-center">
+                    <span className="mr-2">Launch Tools</span>
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools/json-formatter"
+                  className="group px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-black dark:text-white font-medium rounded-xl transition-all duration-300 hover:border-black dark:hover:border-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-4 focus:ring-gray-400/20"
+                  aria-label="Try JSON formatter tool"
+                >
+                  <div className="flex items-center justify-center">
+                    <Code2 className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform duration-200" />
+                    <span>Try JSON Tool</span>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Stats Row */}
+              <div className="flex items-center justify-center lg:justify-start space-x-8 text-sm">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-gray-600 dark:text-gray-400">Always Online</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Shield className="h-4 w-4 text-blue-600" />
+                  <span className="text-gray-600 dark:text-gray-400">Privacy First</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Zap className="h-4 w-4 text-yellow-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Lightning Fast</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Personalized Section for Authenticated Users */}
-          <ClientUserMessage user={user} />
-
-          <div className="flex items-center justify-center space-x-8 text-sm text-gray-500 dark:text-gray-400 mt-8">
-            <div className="flex items-center">
-              <Star className="h-4 w-4 mr-1" aria-hidden="true" />
-              Free Forever
-            </div>
-            <div className="flex items-center">
-              <Zap className="h-4 w-4 mr-1" aria-hidden="true" />
-              Lightning Fast
-            </div>
-            <div className="flex items-center">
-              <Shield className="h-4 w-4 mr-1" aria-hidden="true" />
-              Privacy First
-            </div>
+          <div className="mt-16">
+            <ClientUserMessage user={user} />
           </div>
         </div>
       </section>

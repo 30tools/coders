@@ -1,7 +1,5 @@
 import { generateMetadata as createSEOMetadata } from '@/lib/seo';
 import { getServerAuthSession } from '@/server/auth';
-import ServerHeader from '@/components/ServerHeader';
-import Footer from '@/components/Footer';
 import ProfileContent from './ProfileContent';
 import type { Metadata } from 'next';
 
@@ -24,9 +22,7 @@ export default async function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
-      <ServerHeader />
       <ProfileContent user={user} />
-      <Footer />
     </div>
   );
 }
