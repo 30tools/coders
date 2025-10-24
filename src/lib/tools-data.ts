@@ -456,6 +456,35 @@ export const toolsData = {
       "implemented": false
     },
     {
+      "id": "color-palette-generator",
+      "name": "Color Palette Generator",
+      "description": "AI-powered color palette generator with accessibility checking and harmony algorithms.",
+      "searchDesc": "color palette generator picker harmony accessibility WCAG CSS Tailwind export",
+      "category": "design-tools",
+      "subcategory": "generators",
+      "tags": [
+        "color",
+        "palette",
+        "design",
+        "accessibility",
+        "harmony"
+      ],
+      "featured": true,
+      "popular": true,
+      "difficulty": "beginner",
+      "inputTypes": [
+        "color"
+      ],
+      "outputTypes": [
+        "palette",
+        "css"
+      ],
+      "url": "/tools/color-palette-generator",
+      "icon": "palette",
+      "shortDescription": "Generate beautiful color palettes with AI",
+      "implemented": true
+    },
+    {
       "id": "timestamp-converter",
       "name": "Timestamp Converter",
       "description": "Convert between Unix timestamps, ISO dates, and human-readable formats.",
@@ -470,7 +499,7 @@ export const toolsData = {
         "time",
         "conversion"
       ],
-      "featured": false,
+      "featured": true,
       "popular": true,
       "difficulty": "beginner",
       "inputTypes": [
@@ -483,6 +512,34 @@ export const toolsData = {
       "url": "/tools/timestamp-converter",
       "icon": "clock",
       "shortDescription": "Convert timestamps and dates",
+      "implemented": true
+    },
+    {
+      "id": "text-diff",
+      "name": "Text Diff Checker",
+      "description": "Compare two text documents and highlight differences line by line.",
+      "searchDesc": "text diff checker comparison difference highlight merge conflict resolution",
+      "category": "utilities",
+      "subcategory": "comparison",
+      "tags": [
+        "diff",
+        "comparison",
+        "text",
+        "merge",
+        "conflict"
+      ],
+      "featured": false,
+      "popular": true,
+      "difficulty": "beginner",
+      "inputTypes": [
+        "text"
+      ],
+      "outputTypes": [
+        "diff"
+      ],
+      "url": "/tools/text-diff",
+      "icon": "git-compare",
+      "shortDescription": "Compare text documents visually",
       "implemented": false
     },
     {
