@@ -352,7 +352,7 @@ export const toolsData = {
         "security",
         "validation"
       ],
-      "featured": false,
+      "featured": true,
       "popular": true,
       "difficulty": "intermediate",
       "inputTypes": [
@@ -365,7 +365,7 @@ export const toolsData = {
       "url": "/tools/jwt-decoder",
       "icon": "key",
       "shortDescription": "Decode and validate JWT tokens",
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "qr-generator",
